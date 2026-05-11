@@ -1,4 +1,3 @@
-{-# LANGUAGE BangPatterns #-}
 {-# OPTIONS_GHC -Wno-missing-export-lists #-}
 
 import qualified Data.Map as Map
@@ -177,4 +176,24 @@ simplify expr = case expr of
         tell ["Mult constant folding"]
         return (Lit (n1 * n2))
       _ -> return (Mul se1 se2)
+
+
+-- Task 6
+newtype ZipList a = ZipList {getZipList :: [a]} deriving (Show)
+
+instance Functor ZipList where
+  fmap f (ZipList xs) = ZipList (fmap f xs)
+
+instance Applicative ZipList where
+  pure x = ZipList (repeat x)
+  (ZipList fs) <*> (ZipList xs) = ZipList (zipWith ($) fs xs)
+
+-- I run
+-- getZipList (pure id <*> ZipList [1,2,3])
+-- and got [1,2,3]
+--
+-- getZipList (pure (+) <*> ZipList [1,2,3] <*> ZipList [10,20,30])
+-- and got [11,22,33]
+--
+
 
