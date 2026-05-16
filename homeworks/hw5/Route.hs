@@ -1,0 +1,10 @@
+module Routes where
+getRoutes :: String -> [[String]]
+getRoutes "Punta Arenas" = [ [ "Puerto Montt", "Santiago", "Antofagasta", "Lima" ], [ "Buenos Aires", "Cordoba", "La Paz", "Lima" ] ]
+getRoutes "Lima" = [ [ "Quito", "Cali", "Medellín", "Panama City", "Mexico City" ] ]
+getRoutes "Mexico City" = [ [ "Los Angeles", "Denver", "Chicago" ], [ "Dallas", "Saint Louis", "Chicago" ] ]
+getRoutes "Chicago" = [ [ "Saskatchewan", "Yukon" ], [ "New York", "Ottawa", "Manitoba", "Yukon" ], [ "Saskatchewan", "Fort Nelson", "Whitehorse", "Yukon" ] ]
+getRoutes "Yukon" = [ [ "Fairbanks", "Unalakleet", "Uelen", "Yakutsk", "Ulaanbaatar", "Aktau" ] ]
+getRoutes "Aktau" = [ [ "Baku", "Tbilisi", "Istanbul", "Budapest" ], [ "Ashgabat", "Tehran", "Budapest" ] ]
+getRoutes "Budapest" = [ [ "Vienna", "Berlin", "Paris" ], [ "Warsaw", "Berlin", "Paris" ], [ "Venice", "Monaco", "Paris" ] ]
+getRoutes "Paris" = [ [ "Kingston upon Hull" ] ]
