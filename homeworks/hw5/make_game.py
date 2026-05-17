@@ -44,7 +44,7 @@ with open("map.kml", "w", encoding="utf-8") as f:
 print("KML generated: map.kml")
 
 print("Converting routes to haskell: Route.hs")
-with open("Route.hs", "w", encoding="utf-8") as f:
+with open("Routes.hs", "w", encoding="utf-8") as f:
     f.writelines([
         "module Routes where\n",
         "getRoutes :: String -> [[String]]\n",
@@ -69,7 +69,7 @@ with open("Events.hs", "w", encoding="utf-8") as f:
     f.writelines([
         "module Events where\n",
         "-- Name of the city -> Alternative name of the  \n",
-        "tellEvent :: String -> String\n",
+        "tellEvent :: String -> Maybe String\n",
         "-- Name of the city, Roll -> (Text, Point Difference, Energy Difference)\n",
         "resolveEvent :: String -> Int -> (String, Int, Int)\n",
     ])
@@ -78,7 +78,8 @@ with open("Events.hs", "w", encoding="utf-8") as f:
     for city, event_metadata in events.items():
         event_name: str = event_metadata["name"]
         event_type: str = event_metadata["type"]
-        f.write(f'tellEvent "{city}" = "{event_name} ({event_type})" \n')
+        f.write(f'tellEvent "{city}" = Just "{event_name} ({event_type})" \n')
+    f.write('tellEvent _ = Nothing \n')
 
     f.write("\n")
 
